@@ -1,10 +1,9 @@
-package co.xreos.option
+package com.xreos.ffexecutor.option
 
-import co.xreos.constant.FfmpegCodec
-import co.xreos.option.base.IFfmpegOption
+import com.xreos.ffexecutor.option.base.IFfmpegOption
 
 class FfmpegCodecOption(
-    val ffmpegCodec: FfmpegCodec
+    val ffmpegCodec: com.xreos.ffexecutor.constant.FfmpegCodec
 ): IFfmpegOption {
     override fun getRepresentation(): String {
         return "-c:v ${ffmpegCodec.codec}"

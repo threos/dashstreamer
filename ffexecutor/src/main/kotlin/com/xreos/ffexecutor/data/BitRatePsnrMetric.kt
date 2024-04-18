@@ -1,12 +1,11 @@
-package co.xreos.data
+package com.xreos.ffexecutor.data
 
-import co.xreos.constant.FfmpegCodec
-import co.xreos.data.base.IMetric
-import co.xreos.option.FfmpegQuantizationParameterOption
+import com.xreos.ffexecutor.constant.FfmpegCodec
+import com.xreos.ffexecutor.data.base.IMetric
 
 class BitRatePsnrMetric(
     val videoName: String,
-    val codec: FfmpegCodec,
+    val codec: com.xreos.ffexecutor.constant.FfmpegCodec,
     private val bitRate: Double,
     private val psnr: Double
 ): IMetric<Double, Double> {

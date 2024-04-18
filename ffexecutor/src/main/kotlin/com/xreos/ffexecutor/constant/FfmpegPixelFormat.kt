@@ -1,4 +1,4 @@
-package co.xreos.constant
+package com.xreos.ffexecutor.constant
 
 enum class FfmpegPixelFormat(val pixelFormat: String) {
     YUV420P("yuv420p"),

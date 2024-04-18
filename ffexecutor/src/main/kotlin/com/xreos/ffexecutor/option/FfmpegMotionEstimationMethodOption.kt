@@ -1,7 +1,8 @@
-package co.xreos.option
+package com.xreos.ffexecutor.option
 
-import co.xreos.constant.FfmpegMotionEstimationMethod
-import co.xreos.option.base.IFfmpegOption
+import com.xreos.ffexecutor.constant.FfmpegMotionEstimationMethod
+import com.xreos.ffexecutor.option.base.IFfmpegOption
+
 
 class FfmpegMotionEstimationMethodOption(
     val motionEstimationMethod: FfmpegMotionEstimationMethod

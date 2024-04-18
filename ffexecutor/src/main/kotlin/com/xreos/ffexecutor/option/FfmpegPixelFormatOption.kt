@@ -1,8 +1,7 @@
-package co.xreos.option
+package com.xreos.ffexecutor.option
 
-import co.xreos.constant.FfmpegCodec
-import co.xreos.constant.FfmpegPixelFormat
-import co.xreos.option.base.IFfmpegOption
+import com.xreos.ffexecutor.constant.FfmpegPixelFormat
+import com.xreos.ffexecutor.option.base.IFfmpegOption
 
 class FfmpegPixelFormatOption(
     private val ffmpegPixelFormat: FfmpegPixelFormat

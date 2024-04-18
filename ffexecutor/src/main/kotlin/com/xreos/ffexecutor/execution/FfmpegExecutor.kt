@@ -1,14 +1,15 @@
-package co.xreos.execution
+package com.xreos.ffexecutor.execution
 
-import co.xreos.context.FfmpegContext
-import co.xreos.matrix.FfmpegTaskMatrix
-import co.xreos.option.FfmpegAutoInputOption
-import co.xreos.option.FfmpegInputOutputPipeLinkerOption
-import co.xreos.option.FfmpegNoOutputOption
+import com.xreos.ffexecutor.context.FfmpegContext
+import com.xreos.ffexecutor.matrix.FfmpegTaskMatrix
+import com.xreos.ffexecutor.option.FfmpegAutoInputOption
+import com.xreos.ffexecutor.option.FfmpegInputOutputPipeLinkerOption
+import com.xreos.ffexecutor.option.FfmpegNoOutputOption
+
 
 object FfmpegExecutor {
     @Suppress("MemberVisibilityCanBePrivate")
-    fun execute(ffmpegContext: FfmpegContext, processor: ((FfmpegContext, String) -> Unit)? = null) {
+    fun execute(ffmpegContext: FfmpegContext, processor: ((FfmpegContext, String) -> Unit)? = null, throwExceptionOnFailure: Boolean = false) {
         val input = ffmpegContext.options.firstOrNull { it is FfmpegInputOutputPipeLinkerOption }?.let {
             ffmpegContext.output
         } ?: ffmpegContext.input
@@ -30,8 +31,8 @@ object FfmpegExecutor {
         if(ffmpegContext.options.firstOrNull { it is FfmpegInputOutputPipeLinkerOption || it is FfmpegNoOutputOption } == null) command.add(ffmpegContext.output.absolutePath)
         println("Executing: ${command.joinToString(separator = " ")}")
         val process = ProcessBuilder(command).start()
-        process.waitFor()
-        val output = ""/*String(process.inputStream.readAllBytes())*/
+        val success = process.waitFor() == 0
+        val output = ""
         if (processor == null) {
             ffmpegContext.metadataOutput?.run {
                 this.createNewFile()
@@ -49,6 +50,7 @@ object FfmpegExecutor {
                 String(it)
             }}")
         }
+        if(!success && throwExceptionOnFailure) throw Exception("Failed to execute: ${command.joinToString(separator = " ")}")
     }
 
     fun execute(ffmpegTaskMatrix: FfmpegTaskMatrix, processor: ((FfmpegContext, String) -> Unit)? = null) {
@@ -76,7 +78,7 @@ object FfmpegExecutor {
                 )
             }
         }.flatten().forEach {
-            execute(it, processor)
+            FfmpegExecutor.execute(it, processor)
         }
     }
 }

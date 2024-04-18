@@ -1,14 +1,14 @@
-package co.xreos
+package co.xreos.com.xreos.ffexecutor
 
 import co.xreos.context.FfmpegBaseContext
-import co.xreos.store.MetricStore
+import com.xreos.ffexecutor.store.MetricStore
 import java.io.File
 import java.util.*
 
 lateinit var currentRunDate: Date
 lateinit var taskId: String
 
-val metricStore = MetricStore()
+val metricStore = com.xreos.ffexecutor.store.MetricStore()
 fun mkdir() {
     val outputDir = defaultOutputFolder()
     File(outputDir).takeUnless {

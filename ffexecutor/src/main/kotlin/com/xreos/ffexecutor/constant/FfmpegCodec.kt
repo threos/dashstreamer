@@ -1,4 +1,4 @@
-package co.xreos.constant
+package com.xreos.ffexecutor.constant
 
 enum class FfmpegCodec(val codec: String) {
     H264("libx264"),

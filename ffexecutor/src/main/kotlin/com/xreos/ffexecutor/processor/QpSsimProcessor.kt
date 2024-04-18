@@ -1,9 +1,9 @@
-package co.xreos.processor
+package com.xreos.ffexecutor.processor
 
-import co.xreos.context.FfmpegContext
-import co.xreos.data.QpSsimMetric
-import co.xreos.option.FfmpegQuantizationParameterOption
-import co.xreos.processor.base.IProcessor
+import com.xreos.ffexecutor.context.FfmpegContext
+import com.xreos.ffexecutor.data.QpSsimMetric
+import com.xreos.ffexecutor.option.FfmpegQuantizationParameterOption
+import com.xreos.ffexecutor.processor.base.IProcessor
 
 class QpSsimProcessor: IProcessor<QpSsimMetric> {
     override fun process(ffmpegContext: FfmpegContext, data: String): QpSsimMetric {

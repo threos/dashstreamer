@@ -4,8 +4,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class DashstreamerApplication
+class DashStreamerApplication
 
 fun main(args: Array<String>) {
-    runApplication<DashstreamerApplication>(*args)
+    runApplication<DashStreamerApplication>(*args)
 }

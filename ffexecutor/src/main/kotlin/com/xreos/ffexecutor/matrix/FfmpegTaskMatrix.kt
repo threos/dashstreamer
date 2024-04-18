@@ -1,7 +1,6 @@
-package co.xreos.matrix
+package com.xreos.ffexecutor.matrix
 
-import co.xreos.context.FfmpegBaseContext
-import co.xreos.context.FfmpegContext
+import com.xreos.ffexecutor.context.FfmpegBaseContext
 import java.io.File
 
 data class FfmpegTaskMatrix(

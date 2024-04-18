@@ -1,6 +1,6 @@
-package co.xreos.option
+package com.xreos.ffexecutor.option
 
-import co.xreos.option.base.IFfmpegOption
+import com.xreos.ffexecutor.option.base.IFfmpegOption
 
 class FfmpegX265ParamsOption: IFfmpegOption {
     override fun getRepresentation(): String {

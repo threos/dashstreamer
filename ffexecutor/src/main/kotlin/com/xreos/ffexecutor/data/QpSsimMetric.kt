@@ -1,7 +1,7 @@
-package co.xreos.data
+package com.xreos.ffexecutor.data
 
-import co.xreos.data.base.IMetric
-import co.xreos.option.FfmpegQuantizationParameterOption
+import com.xreos.ffexecutor.data.base.IMetric
+import com.xreos.ffexecutor.option.FfmpegQuantizationParameterOption
 
 class QpSsimMetric(
     private val quantizationParameterOption: FfmpegQuantizationParameterOption,

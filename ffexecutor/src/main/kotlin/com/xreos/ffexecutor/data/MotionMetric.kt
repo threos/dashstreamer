@@ -1,10 +1,8 @@
-package co.xreos.data
+package com.xreos.ffexecutor.data
 
-import co.xreos.constant.FfmpegMotionEstimationMethod
-import co.xreos.data.base.IMetric
-import co.xreos.option.FfmpegMotionEstimationMethodOption
-import co.xreos.option.FfmpegMotionEstimationRangeOption
-import co.xreos.option.FfmpegReferenceFramesOption
+import com.xreos.ffexecutor.data.base.IMetric
+import com.xreos.ffexecutor.option.FfmpegMotionEstimationMethodOption
+import com.xreos.ffexecutor.option.FfmpegMotionEstimationRangeOption
 
 class MotionMetric(
     private val ffmpegMotionEstimationMethodOption: FfmpegMotionEstimationMethodOption,

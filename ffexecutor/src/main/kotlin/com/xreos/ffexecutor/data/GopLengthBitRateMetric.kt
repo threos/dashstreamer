@@ -1,8 +1,7 @@
-package co.xreos.data
+package com.xreos.ffexecutor.data
 
-import co.xreos.data.base.IMetric
-import co.xreos.option.FfmpegGOPLengthOption
-import co.xreos.option.FfmpegQuantizationParameterOption
+import com.xreos.ffexecutor.data.base.IMetric
+import com.xreos.ffexecutor.option.FfmpegGOPLengthOption
 
 class GopLengthBitRateMetric(
     private val gopLengthOption: FfmpegGOPLengthOption,

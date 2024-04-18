@@ -1,4 +1,4 @@
-package co.xreos.data.base
+package com.xreos.ffexecutor.data.base
 
 interface IMetric<X, Y> {
     fun getX(): X

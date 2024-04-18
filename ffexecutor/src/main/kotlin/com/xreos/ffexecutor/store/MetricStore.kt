@@ -1,6 +1,6 @@
-package co.xreos.store
+package com.xreos.ffexecutor.store
 
-import co.xreos.data.base.IMetric
+import com.xreos.ffexecutor.data.base.IMetric
 
 class MetricStore {
     private val map: MutableMap<String, Map<String, List<IMetric<*, *>>>> = HashMap()

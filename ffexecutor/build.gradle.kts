@@ -10,6 +10,8 @@ repositories {
 }
 
 dependencies {
+    implementation("net.bramp.ffmpeg:ffmpeg:0.8.0")
+
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 }
 
