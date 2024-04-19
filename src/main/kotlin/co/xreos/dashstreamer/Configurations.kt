@@ -40,17 +40,4 @@ class Configurations {
         bean.order = Ordered.HIGHEST_PRECEDENCE
         return bean
     }
-
-    @Bean
-    fun bufferedImageHttpMessageConverter(): HttpMessageConverter<BufferedImage?>? {
-        return BufferedImageHttpMessageConverter()
-    }
-
-    @Bean
-    fun restTemplate(builder: RestTemplateBuilder): RestTemplate {
-        return builder
-            .setConnectTimeout(Duration.ofMillis(3000))
-            .setReadTimeout(Duration.ofMillis(3000))
-            .build()
-    }
 }
