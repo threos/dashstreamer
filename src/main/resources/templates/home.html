@@ -1,0 +1,48 @@
+<html>
+<head>
+    <title>Dashstreamer</title>
+    <style>
+        video {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<script>
+
+</script>
+<div>
+    <a id="link"></a>
+    <button onclick = "saveScreenshot()">Save screenshot</button>
+    <video id="videoPlayer" controls></video>
+</div>
+<script src="https://cdn.dashjs.org/latest/dash.all.debug.js"></script>
+<script>
+
+    (function(){
+        var url = "http://localhost:8080/api/v1/file/stream.mpd";
+        var player = dashjs.MediaPlayer().create();
+        var element = document.querySelector("#videoPlayer")
+        player.initialize(element, url, true);
+    })();
+
+    function saveScreenshot() {
+        var element = document.getElementById("videoPlayer")
+        var canvas = document.createElement('canvas');
+        canvas.width = 640;
+        canvas.height = 480;
+        var ctx = canvas.getContext('2d');
+        //draw image to canvas. scale to target dimensions
+        ctx.drawImage(element, 0, 0, canvas.width, canvas.height);
+
+//convert to desired file format
+        var dataURI = canvas.toDataURL('image/jpeg'); // can also use 'image/png'
+        var link = document.getElementById('link');
+        link.setAttribute('download', 'Screenshot.jpg');
+        link.setAttribute('href', canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"));
+        link.click();
+    }
+</script>
+</body>
+</html>
