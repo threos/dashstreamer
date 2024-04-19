@@ -19,8 +19,6 @@ class ContextPathIndex(
             if(it.isDirectory) null
             else it.name to it
         }?.toMap() ?: throw IllegalStateException("Failed to list files in context path.")
-        files.forEach { (name, file) ->
-            println("Found file: $name")}
     }
 
     fun getFileOrNull(name: String): File? {

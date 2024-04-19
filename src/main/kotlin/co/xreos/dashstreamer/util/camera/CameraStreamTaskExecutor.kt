@@ -27,14 +27,15 @@ class CameraStreamTaskExecutor(
                 listOf(
                     "-f", CameraUtil.getPlatformCameraBackendAPIFormat(),
                     "-framerate", "30",
+                    "-video_size", "640x480",
                     "-i", settings.camera,
-                    "-b:v", "8M",
+                    "-b:v", "3M",
                     "-c:v", "libx264",
                     "-filter:v", "fps=30",
-                    "-rtbufsize", "256M",
+                    "-rtbufsize", "32M",
                     "-hls_master_name", "stream.m3u8",
                     "-hls_playlist", "1",
-                    "-seg_duration", "2",
+                    "-seg_duration", "4",
                     "stream.mpd"
                 )
             ),

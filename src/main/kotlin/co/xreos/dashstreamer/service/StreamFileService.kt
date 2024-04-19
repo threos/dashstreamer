@@ -19,9 +19,9 @@ class StreamFileService(
         logger.debug("Initialize stream file service")
     }
 
-    fun getFile(name: String): ResponseEntity<ByteArrayInputStream> {
+    fun getFile(name: String): ResponseEntity<ByteArray> {
         return contextPathIndex.getFileOrNull(name)?.let {
-            ResponseEntity.ok(ByteArrayInputStream(it.inputStream().readAllBytes()))
+            ResponseEntity.ok(it.inputStream().readAllBytes())
         } ?: ResponseEntity.notFound().build()
     }
 }

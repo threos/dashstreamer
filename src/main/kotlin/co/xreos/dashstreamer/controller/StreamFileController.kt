@@ -18,5 +18,5 @@ class StreamFileController(
     @RequestMapping(value = ["/{name}"], method = [RequestMethod.GET], produces = [MediaType.APPLICATION_OCTET_STREAM_VALUE])
     fun getFile(
         @PathVariable name: String,
-    ): ResponseEntity<ByteArrayInputStream> = streamFileService.getFile(name)
+    ): ResponseEntity<ByteArray> = streamFileService.getFile(name)
 }
