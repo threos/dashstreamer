@@ -2,12 +2,10 @@ package co.xreos.ffexecutor.option
 
 import co.xreos.ffexecutor.option.base.IFfmpegOption
 
-class FfmpegCustomOption(
-    private val option: String,
+class FfmpegVideoBitrateOption(
+    private val bitrate: String
 ): IFfmpegOption {
     override fun getRepresentation(): String {
-        return option
+        return "-b:v $bitrate"
     }
-
-    constructor(vararg options: String): this(options.joinToString(" "))
 }

@@ -2,6 +2,7 @@ package co.xreos.dashstreamer.service
 
 import co.xreos.dashstreamer.util.camera.CameraStreamTaskExecutor
 import co.xreos.dashstreamer.util.camera.CameraStreamTaskSettings
+import co.xreos.dashstreamer.util.fallback.camera.CameraStreamTaskCameraIndexFallbackSettingsProvider
 import co.xreos.dashstreamer.util.file.ContextPathComponent
 import jakarta.annotation.PostConstruct
 import jakarta.annotation.PreDestroy
@@ -28,9 +29,10 @@ class CameraStreamService(
         thread = Thread {
             logger.debug("Starting camera stream service thread")
             CameraStreamTaskExecutor(
-                CameraStreamTaskSettings(
+                initialSettings = CameraStreamTaskSettings(
                     contextPath = contextPathComponent.getContextPath()
                 ),
+                fallbackProvider = CameraStreamTaskCameraIndexFallbackSettingsProvider(),
             ).execute()
         }
         thread.isDaemon = false

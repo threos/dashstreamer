@@ -10,9 +10,8 @@ repositories {
 }
 
 dependencies {
-    implementation("net.bramp.ffmpeg:ffmpeg:0.8.0")
-
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
+    implementation("org.apache.logging.log4j:log4j-core:2.21.1")
+    implementation("org.apache.logging.log4j:log4j-to-slf4j:2.21.1")
 }
 
 tasks.test {

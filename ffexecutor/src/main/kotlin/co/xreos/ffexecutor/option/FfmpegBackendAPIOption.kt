@@ -1,13 +1,12 @@
 package co.xreos.ffexecutor.option
 
 import co.xreos.ffexecutor.option.base.IFfmpegOption
+import java.io.File
 
-class FfmpegCustomOption(
-    private val option: String,
+class FfmpegBackendAPIOption(
+    private val backend: String
 ): IFfmpegOption {
     override fun getRepresentation(): String {
-        return option
+        return "-f $backend"
     }
-
-    constructor(vararg options: String): this(options.joinToString(" "))
 }

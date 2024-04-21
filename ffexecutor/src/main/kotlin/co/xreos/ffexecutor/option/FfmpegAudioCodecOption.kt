@@ -2,12 +2,10 @@ package co.xreos.ffexecutor.option
 
 import co.xreos.ffexecutor.option.base.IFfmpegOption
 
-class FfmpegCustomOption(
-    private val option: String,
+class FfmpegAudioCodecOption(
+    val codec: co.xreos.ffexecutor.constant.FfmpegAudioCodec
 ): IFfmpegOption {
     override fun getRepresentation(): String {
-        return option
+        return "-c:a ${codec.codec}"
     }
-
-    constructor(vararg options: String): this(options.joinToString(" "))
 }

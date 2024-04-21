@@ -2,10 +2,11 @@ package co.xreos.ffexecutor.option
 
 import co.xreos.ffexecutor.option.base.IFfmpegOption
 
-class FfmpegCodecOption(
-    val ffmpegCodec: co.xreos.ffexecutor.constant.FfmpegCodec
+class FfmpegHWInputOption(
+    private val camera: String,
+    private val audio: String
 ): IFfmpegOption {
     override fun getRepresentation(): String {
-        return "-c:v ${ffmpegCodec.codec}"
+        return "-i $camera:$audio"
     }
 }

@@ -5,26 +5,93 @@
         video {
             width: 100%;
             height: 100%;
+            padding-bottom: 100px;
+            box-sizing:border-box;
         }
     </style>
 </head>
-<body>
+<body style="background-color:black;">
 <script>
 
 </script>
 <div>
     <a id="link"></a>
-    <button onclick = "saveScreenshot()">Save screenshot</button>
+    <button onclick = "saveScreenshot()" style="color: #f5f5f5; background-color: #111111; margin: 8px 0; border-radius: 8px; box-shadow: none; border: none; padding: 8px 16px; font-size: 14px; font-family: Arial,serif;">Save snapshot</button>
+    <a style="color: #f5f5f5; background-color: #111111; margin: 8px 4px; border-radius: 8px; box-shadow: none; border: none; padding: 8px 16px; font-size: 14px; font-family: Arial,serif;">
+        <select name="streams" id="streams" onchange="onChange()">
+            <option value="auto">Auto Quality</option>
+            <option value="low">240p - 1M Bitrate</option>
+            <option value="medium">480p - 3M Bitrate</option>
+        </select>
+    </a>
+    <input type="text" id="host" name="host" onchange="onHostChange()" style="color: #111111; background-color: #f5f5f5; margin: 8px 4px; border-radius: 8px; box-shadow: none; border: none; padding: 8px 16px; font-size: 14px; font-family: Arial,serif;" placeholder="Host" value="localhost:8080"><br><br>
     <video id="videoPlayer" controls></video>
 </div>
 <script src="https://cdn.dashjs.org/latest/dash.all.debug.js"></script>
 <script>
+    var streams = document.getElementById("streams");
+    var hostElement = document.getElementById("host");
+
+
+    var url = "http://localhost:8080/api/v1/file/stream.mpd";
+    var player = dashjs.MediaPlayer().create();
+    var element = document.querySelector("#videoPlayer")
+    var settings = {
+        streaming: {
+            delay: {
+                liveDelay: 15
+            },
+            liveCatchup: {
+                enabled: false
+            },
+            abr: {
+                autoSwitchBitrate: {
+                    video: true
+                }
+            }
+        }
+    }
+    player.initialize(element, url, true);
+    player.updateSettings(settings);
+    player.setAuto
+    player.play()
+
+    function onSourceChange() {
+        var host = hostElement.value;
+        var url = "http://" + host + "/api/v1/file/stream.mpd";
+        player.attachSource(url);
+    }
+    function onChange() {
+        player.getBitrateInfoListFor('video').forEach(
+            function (bitrateInfo) {
+                console.log(bitrateInfo);
+            }
+        )
+        if(streams.value === "medium")
+        {
+            console.log("Setting to medium")
+            settings.streaming.abr.autoSwitchBitrate = false;
+            player.updateSettings(settings);
+            player.setQualityFor("video", 1)
+        } else if(streams.value === "low") {
+            console.log("Setting to low")
+            settings.streaming.abr.autoSwitchBitrate = false;
+            player.updateSettings(settings);
+            player.setQualityFor("video", 0)
+        } else {
+            console.log("Setting to auto")
+            settings.streaming.abr.autoSwitchBitrate = true;
+            player.updateSettings(settings);
+        }
+    }
+
+    addEventListener()
+
+    function onHostChange() {
+        onSourceChange()
+    }
 
     (function(){
-        var url = "http://localhost:8080/api/v1/file/stream.mpd";
-        var player = dashjs.MediaPlayer().create();
-        var element = document.querySelector("#videoPlayer")
-        player.initialize(element, url, true);
     })();
 
     function saveScreenshot() {

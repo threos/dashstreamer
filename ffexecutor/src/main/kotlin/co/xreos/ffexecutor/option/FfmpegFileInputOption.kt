@@ -1,13 +1,12 @@
 package co.xreos.ffexecutor.option
 
 import co.xreos.ffexecutor.option.base.IFfmpegOption
+import java.io.File
 
-class FfmpegCustomOption(
-    private val option: String,
+class FfmpegFileInputOption(
+    private val file: File
 ): IFfmpegOption {
     override fun getRepresentation(): String {
-        return option
+        return "-i ${file.absolutePath}"
     }
-
-    constructor(vararg options: String): this(options.joinToString(" "))
 }

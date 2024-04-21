@@ -6,14 +6,15 @@ import co.xreos.ffexecutor.matrix.FfmpegTaskMatrix
 import co.xreos.ffexecutor.option.FfmpegAutoInputOption
 import co.xreos.ffexecutor.option.FfmpegInputOutputPipeLinkerOption
 import co.xreos.ffexecutor.option.FfmpegNoOutputOption
-import co.xreos.ffexecutor.task.IFfmpegTask
+import co.xreos.ffexecutor.task.base.IFfmpegTask
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory.getLogger
 import java.io.File
 
 
 object FfmpegExecutor {
-    private val logger: Logger = getLogger(FfmpegExecutor::class.java.name)
+    private val logger: Logger = getLogger(javaClass)
+
     fun run(task: IFfmpegTask, path: File? = null): TaskResult {
         logger.debug("Running: ${task.getDefinition().joinToString(separator = " ")}")
         path?.takeUnless { it.exists() }?.mkdirs()
@@ -65,7 +66,6 @@ object FfmpegExecutor {
         println("Executing: ${command.joinToString(separator = " ")}")
         val process = ProcessBuilder(command).start()
         val success = process.waitFor() == 0
-        val output = ""
         if (processor == null) {
             ffmpegEncodeContext.metadataOutput?.run {
                 this.createNewFile()
@@ -86,6 +86,7 @@ object FfmpegExecutor {
         if(!success && throwExceptionOnFailure) throw Exception("Failed to execute: ${command.joinToString(separator = " ")}")
     }
 
+    @Deprecated("Use FfmpegExecutor.run(task: IFfmpegTask) iteratively instead.")
     fun execute(ffmpegTaskMatrix: FfmpegTaskMatrix, processor: ((FfmpegEncodeContext, String) -> Unit)? = null) {
         ffmpegTaskMatrix.inputs.map { input ->
             ffmpegTaskMatrix.contexts.mapIndexed { index, it ->
@@ -111,7 +112,7 @@ object FfmpegExecutor {
                 )
             }
         }.flatten().forEach {
-            FfmpegExecutor.execute(it, processor)
+            execute(it, processor)
         }
     }
 }

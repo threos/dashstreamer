@@ -2,12 +2,11 @@ package co.xreos.ffexecutor.option
 
 import co.xreos.ffexecutor.option.base.IFfmpegOption
 
-class FfmpegCustomOption(
-    private val option: String,
+class FfmpegVideoScaleFilterOption(
+    private val width: Int,
+    private val height: Int
 ): IFfmpegOption {
     override fun getRepresentation(): String {
-        return option
+        return "-filter:v scale=$width:$height"
     }
-
-    constructor(vararg options: String): this(options.joinToString(" "))
 }
