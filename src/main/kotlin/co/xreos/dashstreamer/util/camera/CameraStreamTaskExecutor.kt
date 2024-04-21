@@ -40,10 +40,12 @@ class CameraStreamTaskExecutor(
                 FfmpegBackendAPIOption(CameraUtil.getPlatformCameraBackendAPIFormat()),
                 FfmpegFramerateOption(framerate = 30),
                 FfmpegVideoSizeOption(width = 640, height = 480),
-                FfmpegHWInputOption(camera = settings.camera, audio = "0"),
-                FfmpegCustomOption(option = "-map 0:v:0 -map 0:a\\?:0 -map 0:v:0 -map 0:a\\?:0"),
-                FfmpegVideoCodecOption(codec = FfmpegVideoCodec.H264),
+                FfmpegHWInputOption(camera = settings.camera, audio = null),
                 FfmpegAudioCodecOption(codec = FfmpegAudioCodec.AAC),
+                FfmpegAudioChannelNumberOption(channels = 2),
+                FfmpegAudioBitrateOption(kBitPerSecond = 128),
+                FfmpegCustomOption(option = "-map 0:v:0 -map 0:a:0 -map 0:v:0 -map 0:a:0"),
+                FfmpegVideoCodecOption(codec = FfmpegVideoCodec.H264),
                 FfmpegStreamBuilder(index = 0)
                     .withVideoBitrate(megaBitPerSecond = 1)
                     .withVideoScaleFilter(width = -2, height = 240)
@@ -51,8 +53,6 @@ class CameraStreamTaskExecutor(
                 FfmpegStreamBuilder(index = 1)
                     .withVideoBitrate(megaBitPerSecond = 3)
                     .build(),
-                FfmpegAudioChannelNumberOption(channels = 2),
-                FfmpegAudioBitrateOption(kBitPerSecond = 128),
                 FfmpegSegmentDurationOption(duration = 2),
                 *kCustomOptions,
             ),

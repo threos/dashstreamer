@@ -7,12 +7,12 @@ import org.springframework.stereotype.Service
 import java.io.File
 
 const val kFileScannerDelayMillis: Long = 100
-
 @Service
 class ContextPathIndex(
     @Autowired val contextPathComponent: ContextPathComponent
 ) {
     var files: Map<String, File> = emptyMap()
+
     @Scheduled(fixedRate = kFileScannerDelayMillis)
     fun scheduleScanTask() {
         files = contextPathComponent.getContextPath().listFiles()?.mapNotNull {
