@@ -1,6 +1,5 @@
 package co.xreos.dashstreamer.util.fallback.execution
 
-import co.xreos.dashstreamer.util.fallback.NoFallbackSettingsProvider
 import co.xreos.dashstreamer.util.fallback.base.IFallbackSettingsProvider
 
 object FallbackExecutor {

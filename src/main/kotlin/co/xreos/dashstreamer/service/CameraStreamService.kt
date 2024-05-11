@@ -7,8 +7,6 @@ import co.xreos.dashstreamer.util.file.ContextPathComponent
 import jakarta.annotation.PostConstruct
 import jakarta.annotation.PreDestroy
 import org.apache.logging.log4j.LogManager.getLogger
-import org.springframework.scheduling.annotation.Scheduled
-import org.springframework.stereotype.Component
 import org.springframework.stereotype.Service
 
 @Service

@@ -1,7 +1,6 @@
 package co.xreos.ffexecutor.context
 
 import co.xreos.ffexecutor.option.base.IFfmpegOption
-import java.io.File
 import java.util.*
 
 open class FfmpegBaseContext(
